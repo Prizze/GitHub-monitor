@@ -1,13 +1,15 @@
 package usecase
 
 type GHMonitorUsecase struct{
-
+	gitHubAPI gitHubAPI
 }
 
-func NewGHMonitorUsecase() *GHMonitorUsecase {
-	return &GHMonitorUsecase{}
+func NewGHMonitorUsecase(gitHubAPI gitHubAPI) *GHMonitorUsecase {
+	return &GHMonitorUsecase{
+		gitHubAPI: gitHubAPI,
+	}
 }
 
-func (uc  *GHMonitorUsecase) GetTop() {
+func (uc *GHMonitorUsecase) InitFetching() {
 	
 }

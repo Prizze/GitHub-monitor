@@ -2,6 +2,11 @@ package domain
 
 import "time"
 
+type QueryParamsRequest struct {
+	Language string `schema:"lang" validate:"lang,required"`
+	Number   uint32 `schema:"n" validate:"gte=1,lte=10"`
+}
+
 // Структура ответа от API GitHub
 type APIResponseDTO struct {
 	TotalCount uint32          `json:"total_count"`

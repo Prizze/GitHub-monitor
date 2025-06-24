@@ -36,25 +36,27 @@ func (h *GHMonitorDelivery) GetTop(w http.ResponseWriter, r *http.Request) {
 
 	// Количество репозиториев в списке по умолчанию
 	if params.Number == 0 {
-		params.Number = 5
+		params.Number = domain.DefaultReposNumber
 	}
-	
+
 	// Валидация
 	validator := validate.NewValidator()
 	if err := validator.Validator.Struct(params); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	
 
-	resp := map[string]string{
-		"message": "hello, world",
+	// Получение статистики по языку
+	langStat, err := h.usecase.GetLanguageStatistic(params)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	if err := json.NewEncoder(w).Encode(resp); err != nil {
+	if err := json.NewEncoder(w).Encode(langStat); err != nil {
 		http.Error(w, "failed to encode response", http.StatusInternalServerError)
 	}
 }

@@ -1,5 +1,7 @@
 package http
 
+import "github.com/Prizze/GitHub-monitor/gh-monitor/domain"
+
 type ghMonitorUsecase interface {
-	InitFetching()
+	GetLanguageStatistic(domain.QueryParamsRequest) (*domain.APIResponseDTO, error)
 }

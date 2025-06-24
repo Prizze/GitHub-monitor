@@ -17,6 +17,7 @@ func main() {
 	githubAPI := github.NewGitHubAPI(client)
 	// Usecase
 	usecase := usecase.NewGHMonitorUsecase(githubAPI)
+	go usecase.InitFetching()
 	// Delivery
 	delivery := delivery.NewGHMonitorDelivery(usecase)
 

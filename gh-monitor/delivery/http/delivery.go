@@ -19,6 +19,16 @@ func NewGHMonitorDelivery(usecase ghMonitorUsecase) *GHMonitorDelivery {
 	}
 }
 
+// GetTop godoc
+// @Summary Получение статистики репозиториев по языку
+// @Descripiton Возвращает список репозиториев с наибольшим количеством звезд по языку
+// @Tags monitor
+// @Produce json
+// @Param lang query string true "Выбор языка"
+// @Param n query int false "Лимит репозиториев: от 1 до 10, по умолчанию - 5"
+// @Success 200 {object} domain.APIResponseDTO
+// @Failure 500 {string} string "Внутренняя ошибка"
+// @Router /top [get]
 func (h *GHMonitorDelivery) GetTop(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Bad request", http.StatusBadRequest)

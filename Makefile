@@ -20,3 +20,7 @@ test:
 # Генерация swagger документации
 swagger:
 	swag init -g ${SRC}
+
+# Запуск контейнера
+docker-start:
+	docker build -t github-monitor . && docker run --rm -p 8080:8080 github-monitor

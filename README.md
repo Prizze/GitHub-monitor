@@ -12,7 +12,7 @@
 
 ### How to Run
 
-```docker build -t github-monitor . && docker run --rm -p 8080:8080 github-monitor```
+```make docker-start```
 
 После запуска сервис будет доступен на ```localhost:8000```
 

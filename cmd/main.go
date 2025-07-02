@@ -9,6 +9,7 @@ import (
 	delivery "github.com/Prizze/GitHub-monitor/gh-monitor/delivery/http"
 	usecase "github.com/Prizze/GitHub-monitor/gh-monitor/usecase"
 	github "github.com/Prizze/GitHub-monitor/infrastructure/github"
+	"github.com/Prizze/GitHub-monitor/internal/middleware"
 	"github.com/gorilla/mux"
 	httpSwagger "github.com/swaggo/http-swagger"
 )
@@ -26,6 +27,10 @@ func main() {
 	// Роутер
 	r := mux.NewRouter()
 
+	// Rate limiting
+	rl := middleware.NewRateLimiter()
+	r.Use(rl.RateLimitingMiddleware)
+	// API
 	r.HandleFunc("/top", delivery.GetTop).Methods(http.MethodGet)
 
 	// Swagger

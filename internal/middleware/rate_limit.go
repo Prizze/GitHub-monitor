@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"net/http"
 	"sync"
 	"time"
@@ -11,7 +10,7 @@ import (
 
 const (
 	rateLimitRPS    = 1               // Количество запросов в секунду
-	rateLimitBurst  = 1	              // Максимум запросов за раз
+	rateLimitBurst  = 1               // Максимум запросов за раз
 	cleanUpInterval = 5 * time.Minute // Таймер очистки лимитеров
 )
 

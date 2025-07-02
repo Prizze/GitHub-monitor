@@ -1,6 +1,8 @@
 package validate
 
 import (
+	"log"
+
 	"github.com/Prizze/GitHub-monitor/gh-monitor/domain"
 	"github.com/go-playground/validator/v10"
 )
@@ -11,7 +13,9 @@ type Validator struct {
 
 func NewValidator() *Validator {
 	validator := validator.New()
-	validator.RegisterValidation("lang", langValidate)
+	if err := validator.RegisterValidation("lang", langValidate); err != nil {
+		log.Println("add validation field failed: ", err.Error())
+	}
 
 	return &Validator{
 		Validator: validator,

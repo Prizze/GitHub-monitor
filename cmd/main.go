@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
@@ -38,5 +39,8 @@ func main() {
 
 	// Запуск сервера
 	fmt.Println("Сервис запущен на localhost:8080")
-	http.ListenAndServe(":8080", r)
+	if err := http.ListenAndServe(":8080", r); err != nil {
+		log.Fatalf("Server not started: ", err.Error())
+		return
+	}
 }

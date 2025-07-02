@@ -17,7 +17,6 @@ const (
 type clientLimiter struct {
 	limiter  *rate.Limiter
 	lastSeen time.Time
-	test string
 }
 
 type rateLimiter struct {

@@ -40,7 +40,7 @@ func main() {
 	// Запуск сервера
 	fmt.Println("Сервис запущен на localhost:8080")
 	if err := http.ListenAndServe(":8080", r); err != nil {
-		log.Fatalf("Server not started: ", err.Error())
+		log.Fatalf("Server not started: %s", err.Error())
 		return
 	}
 }

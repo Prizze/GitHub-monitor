@@ -1,0 +1,53 @@
+definitions:
+  domain.APIResponseDTO:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/domain.GitHubRepoDTO'
+        type: array
+      total_count:
+        type: integer
+    type: object
+  domain.GitHubRepoDTO:
+    properties:
+      created_at:
+        type: string
+      full_name:
+        type: string
+      language:
+        type: string
+      stargazers_count:
+        type: integer
+      url:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /top:
+    get:
+      parameters:
+      - description: Выбор языка
+        in: query
+        name: lang
+        required: true
+        type: string
+      - description: 'Лимит репозиториев: от 1 до 10, по умолчанию - 5'
+        in: query
+        name: "n"
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.APIResponseDTO'
+        "500":
+          description: Внутренняя ошибка
+          schema:
+            type: string
+      summary: Получение статистики репозиториев по языку
+      tags:
+      - monitor
+swagger: "2.0"

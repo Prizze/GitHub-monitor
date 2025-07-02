@@ -17,4 +17,4 @@
 После запуска сервис будет доступен на ```localhost:8000```
 
 Пример запроса:
-> http://localhost:8080/top?lang=go&limit=5
+> http://localhost:8080/top?lang=go&n=5
